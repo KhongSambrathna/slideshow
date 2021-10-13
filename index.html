@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow</title>
+    <script src="jquery-3.6.0.js"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        .container {
+            width: 1300px;
+            margin: auto;
+            background-color: red;
+        }
+        img {
+            width: 100%;
+        }
+        .dot-btn {
+            position: absolute;
+            top: 370px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .dot {
+            width: 15px;
+            height: 15px;
+            margin: 0 2px;
+            float: left;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+        .slide {
+            position: relative;
+            top: 0;
+        }
+        .slides {
+            position: absolute;
+            top: 0;
+        }
+        .active {
+            background-color: gold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slide">
+            <div class="slides">
+                <img src="img/img1.jpg">
+            </div>
+            <div class="slides">
+                <img src="img/img2.jpg">
+            </div>
+            <div class="slides">
+                <img src="img/img3.jpg">
+            </div>
+            <div class="slides">
+                <img src="img/img4.jpg">
+            </div>
+            <div class="slides">
+                <img src="img/img5.jpg">
+            </div>
+            <!--Chagne slide using dot button-->
+            <div class="dot-btn">
+                <div class="dot active"></div>
+                <div class="dot "></div>
+                <div class="dot "></div>
+                <div class="dot "></div>
+                <div class="dot "></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('.slides').fadeOut(200);
+            $('.slides:nth-child(1)').fadeIn(200);
+            $('.dot').click(function(){
+                // ចាប់យកលេខរៀងរបស់ .dot class និង​ បូកថែមមួយព្រោះលេខ
+                //​ index របស់ .dot class រាប់ពី 0 ប៉ុន្តែយើងយកទៅប្រើជាមួយ nth-child វារាប់ពី 1 វិញ
+                var index =  $('.dot').index(this) + 1; 
+                $('.slides').fadeOut(200);
+                $('.slides:nth-child(' + index + ')').fadeIn(200);
+                // កំណត់ទៅលើ dot active
+                $('.dot').removeClass('active');
+                $('.dot:nth-child(' + index + ')').addClass('active');
+            });
+        });
+    </script>
+</body>
+</html>
